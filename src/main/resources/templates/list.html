@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<h1>Guest List</h1>
+<a href="/">Add a Guest</a><br />
+<table>
+<tr>
+    <th> Name</th>
+    <th> Date</th>
+    <th> Wishes</th>
+</tr>
+<tr th:each="guest : ${guests}">
+    <td th:text="${guest.name}"></td>
+    <td th:text="${guest.date}"></td>
+    <td th:text="${guest.wish}"></td>
+<td>
+    <a th:href="@{/update/{id}(id=${guest.id})}">Update</a>
+    <a th:href="@{/detail/{id}(id=${guest.id})}">Update</a>
+    <a th:href="@{/delelte/{id}(id=${guest.id})}">Update</a>
+
+</td></tr>
+</table>
+</body>
+</html>
