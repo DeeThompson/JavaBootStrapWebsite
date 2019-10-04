@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+
+
 @Controller
 public class HomeController {
 
@@ -18,27 +20,26 @@ public class HomeController {
     GuestRepository guestRepository;
 
     @RequestMapping("/")
-    public String listCooks(Model model) {
+    public String listGuests(Model model) {
         model.addAttribute("guest", guestRepository.findAll());
         return "list";
     }
 
 
     @GetMapping("/add")
-    public String cookForm(Model model) {
+    public String guestForm(Model model) {
         model.addAttribute("guest", new Guest());
         return "guestform";
 
     }
 
     @PostMapping("/process")
-    public String processForm(@Valid Guest guest,
-                              BindingResult result) {
+    public String processForm(@Valid Guest guest, BindingResult result) {
         if (result.hasErrors()) {
             return "guestform";
         }
         guestRepository.save(guest);
-        return "redirect";
+        return "redirect:/";
 
     }
 
@@ -46,12 +47,19 @@ public class HomeController {
     public String showGuest(@PathVariable("id") long id, Model model) {
         model.addAttribute("guest", guestRepository.findById(id).get());
         return "show";
+    }
 
         @RequestMapping("/update/{id}")
         public String updateGuest ( @PathVariable("id") long id, Model model){
-            model.addAttribute("cook", guestRepository.findById(id).get());
-            return "guestform";
+            model.addAttribute("guest", guestRepository.findById(id).get());
+            return "list";
+        }
+
+        @RequestMapping("/delete/{id}")
+        public String delGuest ( @PathVariable("id") long id){
+            guestRepository.deleteById(id);
+            return "redirect:/";
         }
 
     }
-}
+
