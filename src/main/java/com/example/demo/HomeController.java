@@ -21,7 +21,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String listGuests(Model model) {
-        model.addAttribute("guest", guestRepository.findAll());
+        model.addAttribute("guests", guestRepository.findAll());
         return "list";
     }
 
@@ -49,11 +49,13 @@ public class HomeController {
         return "show";
     }
 
-        @RequestMapping("/update/{id}")
-        public String updateGuest ( @PathVariable("id") long id, Model model){
-            model.addAttribute("guest", guestRepository.findById(id).get());
-            return "list";
-        }
+    @RequestMapping("/update/{id}")
+    public String updateGuest(@PathVariable("id") long id, Model model) {
+        model.addAttribute("guest", guestRepository.findById(id).get());
+        return "guestform";
+    }
+
+
 
         @RequestMapping("/delete/{id}")
         public String delGuest ( @PathVariable("id") long id){

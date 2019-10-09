@@ -19,7 +19,7 @@ public class Guest {
 
     @NotNull
     @Size(min = 4)
-    private int date;
+    private String date;
 
     @NotNull
     @Size(min = 10)
@@ -42,11 +42,11 @@ public class Guest {
         this.name = name;
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -58,6 +58,3 @@ public class Guest {
         this.wishes = wishes;
     }
 }
-
-
-
